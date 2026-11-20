@@ -32,22 +32,42 @@
         }
 
         * { box-sizing: border-box; outline: none; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: var(--bg-body); color: var(--text-main); height: 100vh; overflow: hidden; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            background: var(--bg-body); 
+            color: var(--text-main); 
+            height: 100vh; 
+            overflow: hidden; 
+        }
 
-        /* --- LOGIN PAGE --- */
+        /* --- LOGIN PAGE (Terintegrasi dengan images/mini-kios-bg.svg & logo-mini-kios.svg) --- */
         #login-view {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #2563eb; 
+            background-color: #2563eb;
+            background-image: linear-gradient(rgba(30, 64, 175, 0.78), rgba(37, 99, 235, 0.85)), url('images/mini-kios-bg.svg');
+            background-size: cover;
+            background-position: center;
             display: flex; align-items: center; justify-content: center; z-index: 9999;
         }
 
         .login-card {
-            background: white; padding: 40px; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.97); 
+            backdrop-filter: blur(8px);
+            padding: 40px; border-radius: 20px;
             width: 90%; max-width: 400px; text-align: center;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.25);
             animation: slideUp 0.5s ease-out;
         }
         @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .login-logo-box {
+            width: 76px; height: 76px; margin: 0 auto 12px auto;
+            background: #eff6ff; border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            padding: 10px; border: 1px solid #dbeafe;
+        }
+        .login-logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
         .login-title { font-size: 1.5rem; font-weight: bold; color: var(--text-main); margin-bottom: 5px; }
         .login-subtitle { color: var(--secondary); font-size: 0.9rem; margin-bottom: 30px; }
@@ -67,7 +87,9 @@
 
         /* --- SIDEBAR --- */
         .sidebar { width: 250px; background: var(--sidebar-bg); color: white; display: flex; flex-direction: column; transition: 0.3s; flex-shrink: 0; box-shadow: 4px 0 10px rgba(0,0,0,0.05); }
-        .brand { padding: 20px; font-size: 1.3rem; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.1); }
+        .brand { padding: 18px 20px; font-size: 1.2rem; font-weight: bold; border-bottom: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.1); }
+        .brand-logo { width: 34px; height: 34px; background: white; border-radius: 8px; padding: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .brand-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
         .menu { flex: 1; padding: 20px 10px; display: flex; flex-direction: column; gap: 5px; overflow-y: auto; }
         .menu-btn { 
@@ -78,9 +100,9 @@
         .menu-btn.active { background: white; color: var(--primary); font-weight: bold; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
         .menu-btn i { width: 20px; text-align: center; }
 
-        .sidebar-footer { padding: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.8rem; text-align: center; color: rgba(255,255,255,0.8); }
-        .btn-logout { background: rgba(0,0,0,0.2); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; margin-top: 10px; font-size: 0.8rem; }
-        .btn-logout:hover { background: rgba(0,0,0,0.4); }
+        .sidebar-footer { padding: 20px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.8rem; text-align: center; color: rgba(255,255,255,0.85); }
+        .btn-logout { background: rgba(0,0,0,0.25); color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; margin-top: 10px; font-size: 0.8rem; transition: 0.2s; }
+        .btn-logout:hover { background: rgba(0,0,0,0.45); }
 
         /* --- MAIN CONTENT --- */
         .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
@@ -95,8 +117,8 @@
 
         /* --- POS LAYOUT --- */
         .pos-container { display: flex; gap: 20px; height: 100%; }
-        .pos-left { flex: 2; display: flex; flex-direction: column; gap: 15px; }
-        .pos-right { flex: 1; background: var(--bg-panel); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid var(--border); max-width: 450px; }
+        .pos-left { flex: 2; display: flex; flex-direction: column; gap: 15px; min-width: 0; }
+        .pos-right { flex: 1; background: var(--bg-panel); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); display: flex; flex-direction: column; border: 1px solid var(--border); max-width: 450px; min-width: 320px; }
 
         .search-wrapper { position: relative; }
         .search-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--secondary); }
@@ -106,41 +128,43 @@
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; overflow-y: auto; padding-bottom: 20px; }
         .product-card { 
             background: var(--bg-panel); border: 1px solid var(--border); border-radius: 10px; padding: 15px; cursor: pointer; 
-            transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; height: 140px;
+            transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; height: 145px;
         }
         .product-card:hover { transform: translateY(-3px); border-color: var(--primary); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); }
-        .card-icon { font-size: 2rem; color: #cbd5e1; margin-bottom: 10px; text-align: center; }
-        .card-title { font-weight: 600; font-size: 0.95rem; line-height: 1.3; margin-bottom: 5px; }
-        .card-price { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
+        .product-card.out-of-stock { opacity: 0.55; background: #f8fafc; }
+        .card-icon { font-size: 2rem; color: #cbd5e1; margin-bottom: 8px; text-align: center; }
+        .card-title { font-weight: 600; font-size: 0.95rem; line-height: 1.3; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-price { font-weight: bold; color: var(--primary); font-size: 1.05rem; }
         .card-stock { font-size: 0.8rem; color: var(--secondary); }
         .card-stock.low { color: var(--danger); font-weight: bold; }
 
         /* CART */
         .cart-header { padding: 15px; border-bottom: 1px solid var(--border); font-weight: bold; display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border-radius: 12px 12px 0 0; }
         .cart-items { flex: 1; overflow-y: auto; padding: 10px; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px dashed var(--border); }
-        .item-info div:first-child { font-weight: 600; font-size: 0.9rem; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px dashed var(--border); gap: 8px; }
+        .item-info { flex: 1; min-width: 0; }
+        .item-info div:first-child { font-weight: 600; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .item-info div:last-child { font-size: 0.8rem; color: var(--secondary); }
-        .qty-control { display: flex; align-items: center; gap: 5px; background: #f1f5f9; padding: 5px; border-radius: 6px; }
-        .qty-btn { cursor: pointer; color: var(--text-main); font-weight: bold; width: 25px; height: 25px; display:flex; align-items:center; justify-content:center; border-radius: 4px; background: #e2e8f0; }
+        .qty-control { display: flex; align-items: center; gap: 5px; background: #f1f5f9; padding: 4px; border-radius: 6px; }
+        .qty-btn { cursor: pointer; color: var(--text-main); font-weight: bold; width: 26px; height: 26px; display:flex; align-items:center; justify-content:center; border-radius: 4px; background: #e2e8f0; user-select: none; }
         .qty-btn:hover { background: #cbd5e1; color: var(--primary); }
         
         /* Input manual qty */
-        .qty-input { width: 40px; text-align: center; border: 1px solid var(--border); border-radius: 4px; padding: 3px; font-weight: bold; }
+        .qty-input { width: 42px; text-align: center; border: 1px solid var(--border); border-radius: 4px; padding: 3px; font-weight: bold; background: white; }
         .qty-input::-webkit-inner-spin-button, .qty-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 
         .cart-footer { padding: 20px; border-top: 1px solid var(--border); background: #f8fafc; border-radius: 0 0 12px 12px; }
         .total-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.2rem; font-weight: bold; color: var(--text-main); }
-        .btn-pay { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; }
+        .btn-pay { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.2s; display: flex; justify-content: space-between; align-items: center; }
         .btn-pay:hover { background: var(--primary-dark); }
         .btn-pay:disabled { background: #cbd5e1; cursor: not-allowed; }
 
         /* DASHBOARD STATS */
-        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 20px; }
         .stat-box { background: var(--bg-panel); padding: 20px; border-radius: 12px; border: 1px solid var(--border); display: flex; align-items: center; gap: 20px; }
-        .stat-icon { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-        .stat-info h3 { margin: 0; font-size: 1.5rem; }
-        .stat-info p { margin: 0; color: var(--secondary); font-size: 0.9rem; }
+        .stat-icon { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+        .stat-info h3 { margin: 0; font-size: 1.45rem; }
+        .stat-info p { margin: 4px 0 0 0; color: var(--secondary); font-size: 0.9rem; }
         .bg-icon-blue { background: #eff6ff; color: var(--primary); }
         .bg-icon-green { background: #ecfdf5; color: var(--success); }
         .bg-icon-red { background: #fef2f2; color: var(--danger); }
@@ -150,7 +174,7 @@
         table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         th { background: #f8fafc; padding: 12px; text-align: left; font-weight: 600; color: var(--secondary); font-size: 0.9rem; }
         td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-        .btn-action { padding: 5px 10px; border-radius: 4px; border: 1px solid var(--border); background: white; cursor: pointer; margin-right: 5px; }
+        .btn-action { padding: 6px 10px; border-radius: 4px; border: 1px solid var(--border); background: white; cursor: pointer; margin-right: 4px; transition: 0.15s; }
         .btn-action:hover { background: #f1f5f9; }
 
         .modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; }
@@ -159,20 +183,23 @@
         
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
-        .form-control { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95rem; }
+        .form-control:focus { border-color: var(--primary); }
         .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
-        .btn { padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;}
+        .btn { padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; }
         .btn-primary { background: var(--primary); color: white; }
         .btn-primary:hover { background: var(--primary-dark); }
         .btn-secondary { background: #e2e8f0; color: var(--text-main); }
         .btn-secondary:hover { background: #cbd5e1; }
         .btn-danger { background: var(--danger); color: white; }
+        .btn-danger:hover { background: #dc2626; }
 
-        /* NOTIFICATIONS & CONFIRMATION */
+        /* NOTIFICATIONS (BUG FIXED: Menambahkan .toast.warning) */
         #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
-        .toast { min-width: 250px; padding: 15px 20px; border-radius: 8px; color: white; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1); animation: slideInRight 0.3s ease-out; display: flex; align-items: center; gap: 10px; }
+        .toast { min-width: 260px; padding: 14px 18px; border-radius: 8px; color: white; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: slideInRight 0.3s ease-out; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
         .toast.success { background-color: var(--success); }
         .toast.error { background-color: var(--danger); }
+        .toast.warning { background-color: var(--warning); color: #ffffff; }
         .toast.info { background-color: var(--primary); }
         @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { to { opacity: 0; } }
@@ -181,30 +208,41 @@
         .report-card { background: white; padding: 20px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 20px; }
         .report-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 15px; }
 
-        /* === PRINT STYLE === */
+        /* RESPONSIVE ADAPTATION */
+        @media (max-width: 900px) {
+            .sidebar { width: 70px; }
+            .brand span, .menu-btn span, .sidebar-footer span { display: none; }
+            .brand { justify-content: center; padding: 15px 5px; }
+            .menu-btn { justify-content: center; padding: 12px; }
+            .pos-container { flex-direction: column; overflow-y: auto; }
+            .pos-right { max-width: 100%; min-width: 100%; height: 380px; }
+        }
+
+        /* === PRINT STYLE (Thermal 58mm / Standard Receipt) === */
         #printable { display: none; }
         @media print {
             #login-view, #app-view, .modal-overlay, #toast-container { display: none !important; }
             #printable { 
-                display: block !important; position: absolute; left: 0; top: 0; width: 100%;
-                font-family: 'Consolas', 'Courier New', monospace; font-size: 12px; color: black; background: white; padding: 0; margin: 0;
+                display: block !important; position: absolute; left: 0; top: 0; width: 58mm; max-width: 58mm;
+                font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; color: black; background: white; padding: 4px; margin: 0;
             }
             @page { margin: 0; size: auto; }
             body { background: white; margin: 0; }
         }
         
-        .struk-header { text-align: center; margin-bottom: 10px; }
-        .struk-item { display: flex; justify-content: space-between; margin-bottom: 3px; font-size:12px; }
+        .struk-header { text-align: center; margin-bottom: 8px; }
+        .struk-logo { width: 38px; height: 38px; object-fit: contain; margin: 0 auto 4px auto; display: block; }
+        .struk-item { display: flex; justify-content: space-between; margin-bottom: 3px; font-size: 11px; }
         .struk-divider { border-bottom: 1px dashed black; margin: 5px 0; }
         .struk-bold { font-weight: bold; }
     </style>
 </head>
 <body>
 
-<!-- TOAST CONTAINER (REPLACES ALERT) -->
+<!-- TOAST CONTAINER -->
 <div id="toast-container"></div>
 
-<!-- CUSTOM CONFIRM MODAL (REPLACES CONFIRM) -->
+<!-- CUSTOM CONFIRM MODAL -->
 <div id="modalConfirm" class="modal-overlay" style="z-index: 10000;">
     <div class="modal" style="width: 400px; text-align: center;">
         <div style="font-size: 3rem; color: var(--warning); margin-bottom: 15px;"><i class="fa-solid fa-circle-exclamation"></i></div>
@@ -217,10 +255,33 @@
     </div>
 </div>
 
+<!-- MODAL BAYAR HUTANG (PENGGANTI PROMPT() BROWSER) -->
+<div id="modalPayDebt" class="modal-overlay" style="z-index: 10000;">
+    <div class="modal" style="width: 420px;">
+        <h3 style="margin-top:0;"><i class="fa-solid fa-hand-holding-dollar" style="color:var(--primary);"></i> Pembayaran Hutang</h3>
+        <p style="margin-bottom:5px;">Pelanggan: <b id="debtModalCustName">-</b></p>
+        <p style="margin-top:0; margin-bottom:15px;">Sisa Hutang: <b style="color:var(--danger); font-size:1.1rem;" id="debtModalRemaining">Rp 0</b></p>
+        <input type="hidden" id="debtModalCustId">
+        <div class="form-group">
+            <label>Nominal Pembayaran (Rp)</label>
+            <input type="number" id="debtModalInput" class="form-control" style="font-size:1.2rem; font-weight:bold;" placeholder="Masukkan jumlah bayar...">
+        </div>
+        <button type="button" class="btn-action" style="width:100%; text-align:center; font-weight:600; color:var(--primary);" onclick="fillFullDebt()">Lunasi Seluruh Hutang</button>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+            <button class="btn btn-primary" onclick="submitPayDebt()">Simpan Pembayaran</button>
+        </div>
+    </div>
+</div>
+
 <!-- LOGIN VIEW -->
 <div id="login-view">
     <div class="login-card">
-        <h2 style="color:var(--primary); margin-bottom: 5px;">KIOS MINI PRO</h2>
+        <div class="login-logo-box">
+            <img src="images/logo-mini-kios.svg" alt="Logo Kios Mini" onerror="this.style.display='none'; document.getElementById('loginFallbackIcon').style.display='block';">
+            <i id="loginFallbackIcon" class="fa-solid fa-cash-register" style="display:none; font-size:2.2rem; color:var(--primary);"></i>
+        </div>
+        <h2 id="loginBrandTitle" style="color:var(--primary); margin: 0 0 5px 0;">KIOS MINI PRO</h2>
         <h3 class="login-title">Selamat Datang</h3>
         <p class="login-subtitle">Silakan login untuk melanjutkan</p>
         
@@ -228,7 +289,7 @@
             <div class="input-group">
                 <label>Password</label>
                 <div class="password-wrapper">
-                    <input type="password" id="loginPass" placeholder="Masukkan password...">
+                    <input type="password" id="loginPass" placeholder="Masukkan password..." autofocus>
                     <i class="fa-solid fa-eye toggle-password" onclick="togglePass('loginPass', this)"></i>
                 </div>
             </div>
@@ -242,22 +303,25 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="brand">
-            <i class="fa-solid fa-cash-register"></i>
-            <span>KIOS MINI PRO</span>
+            <div class="brand-logo">
+                <img src="images/logo-mini-kios.svg" alt="Logo" onerror="this.style.display='none'; document.getElementById('sidebarFallbackIcon').style.display='inline-block';">
+                <i id="sidebarFallbackIcon" class="fa-solid fa-cash-register" style="display:none; color:var(--primary);"></i>
+            </div>
+            <span id="sidebarBrandName">KIOS MINI PRO</span>
         </div>
         <div class="menu">
-            <button class="menu-btn active" onclick="nav('dashboard')"><i class="fa-solid fa-chart-line"></i> Dashboard</button>
-            <button class="menu-btn" onclick="nav('pos')"><i class="fa-solid fa-basket-shopping"></i> Kasir (POS)</button>
-            <button class="menu-btn" onclick="nav('products')"><i class="fa-solid fa-box"></i> Inventaris</button>
-            <button class="menu-btn" onclick="nav('customers')"><i class="fa-solid fa-users"></i> Pelanggan</button>
-            <button class="menu-btn" onclick="nav('history')"><i class="fa-solid fa-clock-rotate-left"></i> Riwayat Transaksi</button>
-            <button class="menu-btn" onclick="nav('reports')"><i class="fa-solid fa-file-invoice-dollar"></i> Laporan & Omzet</button>
-            <button class="menu-btn" onclick="nav('settings')"><i class="fa-solid fa-gear"></i> Pengaturan</button>
+            <button class="menu-btn active" onclick="nav('dashboard')"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></button>
+            <button class="menu-btn" onclick="nav('pos')"><i class="fa-solid fa-basket-shopping"></i> <span>Kasir (POS)</span></button>
+            <button class="menu-btn" onclick="nav('products')"><i class="fa-solid fa-box"></i> <span>Inventaris</span></button>
+            <button class="menu-btn" onclick="nav('customers')"><i class="fa-solid fa-users"></i> <span>Pelanggan</span></button>
+            <button class="menu-btn" onclick="nav('history')"><i class="fa-solid fa-clock-rotate-left"></i> <span>Riwayat Transaksi</span></button>
+            <button class="menu-btn" onclick="nav('reports')"><i class="fa-solid fa-file-invoice-dollar"></i> <span>Laporan & Omzet</span></button>
+            <button class="menu-btn" onclick="nav('settings')"><i class="fa-solid fa-gear"></i> <span>Pengaturan</span></button>
         </div>
         <div class="sidebar-footer">
-            v4.0 Desktop Edition<br>
+            <span>v4.1 Desktop Edition</span><br>
             <span id="dbStatusIndicator" style="color:#fbbf24;">DB: Local Storage</span><br>
-            <button class="btn-logout" onclick="reqLogout()"><i class="fa-solid fa-right-from-bracket"></i> Keluar</button>
+            <button class="btn-logout" onclick="reqLogout()"><i class="fa-solid fa-right-from-bracket"></i> <span>Keluar</span></button>
         </div>
     </div>
 
@@ -294,13 +358,13 @@
                 </div>
             </div>
 
-            <div style="display: flex; gap: 20px;">
-                <div style="flex:1; background: white; padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
-                    <h4>🔥 Produk Terlaris (Bulan Ini)</h4>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div style="flex:1; min-width: 280px; background: white; padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
+                    <h4 style="margin-top:0;">🔥 Produk Terlaris</h4>
                     <div id="topProductsList">Belum ada data</div>
                 </div>
-                <div style="flex:1; background: white; padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
-                    <h4>⚠️ Peringatan Stok Menipis</h4>
+                <div style="flex:1; min-width: 280px; background: white; padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
+                    <h4 style="margin-top:0;">⚠️ Peringatan Stok Menipis</h4>
                     <div id="lowStockList">Aman</div>
                 </div>
             </div>
@@ -312,14 +376,14 @@
                 <div class="pos-left">
                     <div class="search-wrapper">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="posSearch" class="search-input" placeholder="Cari nama barang atau scan barcode..." autofocus onkeyup="renderPOS()">
+                        <input type="text" id="posSearch" class="search-input" placeholder="Cari nama barang atau scan barcode lalu Enter..." onkeyup="renderPOS()" onkeydown="handlePosSearchEnter(event)">
                     </div>
                     <div class="product-grid" id="posGrid"></div>
                 </div>
                 <div class="pos-right">
                     <div class="cart-header">
-                        <span>Keranjang</span>
-                        <button onclick="reqClearCart()" style="background:none; border:none; color:var(--danger); cursor:pointer;"><i class="fa-solid fa-trash"></i> Hapus</button>
+                        <span>Keranjang Belanja</span>
+                        <button onclick="reqClearCart()" style="background:none; border:none; color:var(--danger); cursor:pointer; font-weight:600;"><i class="fa-solid fa-trash"></i> Hapus</button>
                     </div>
                     <div class="cart-items" id="cartItems"></div>
                     <div class="cart-footer">
@@ -338,66 +402,72 @@
 
         <!-- PAGE: PRODUCTS -->
         <div id="page-products" class="page">
-            <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-                <input type="text" id="prodSearch" class="form-control" style="width:300px;" placeholder="Cari barang..." onkeyup="renderProductTable()">
+            <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+                <input type="text" id="prodSearch" class="form-control" style="max-width:300px;" placeholder="Cari barang..." onkeyup="renderProductTable()">
                 <button class="btn btn-primary" onclick="openModalProd()"><i class="fa-solid fa-plus"></i> Tambah Barang</button>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Barcode</th>
-                        <th>Nama Produk</th>
-                        <th>Harga</th>
-                        <th>Stok</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="prodTableBody"></tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Barcode</th>
+                            <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prodTableBody"></tbody>
+                </table>
+            </div>
         </div>
 
         <!-- PAGE: CUSTOMERS -->
         <div id="page-customers" class="page">
-            <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-                <input type="text" id="custSearch" class="form-control" style="width:300px;" placeholder="Cari pelanggan..." onkeyup="renderCustTable()">
+            <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+                <input type="text" id="custSearch" class="form-control" style="max-width:300px;" placeholder="Cari pelanggan..." onkeyup="renderCustTable()">
                 <button class="btn btn-primary" onclick="openModalCust()"><i class="fa-solid fa-user-plus"></i> Tambah Pelanggan</button>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>No. HP</th>
-                        <th>Total Hutang</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="custTableBody"></tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>No. HP</th>
+                            <th>Total Hutang</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="custTableBody"></tbody>
+                </table>
+            </div>
         </div>
 
         <!-- PAGE: HISTORY -->
         <div id="page-history" class="page">
             <div style="display:flex; gap:10px; margin-bottom:15px;">
-                <button class="btn btn-danger" onclick="reqResetData()"><i class="fa-solid fa-trash"></i> Reset Data</button>
+                <button class="btn btn-danger" onclick="reqResetData()"><i class="fa-solid fa-trash"></i> Reset Data Transaksi</button>
             </div>
-            <table>
-                <thead><tr><th>Waktu</th><th>Pelanggan</th><th>Items</th><th>Total</th><th>Metode</th><th>Aksi</th></tr></thead>
-                <tbody id="histTableBody"></tbody>
-            </table>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead><tr><th>Waktu</th><th>Pelanggan</th><th>Items</th><th>Total</th><th>Metode</th><th>Aksi</th></tr></thead>
+                    <tbody id="histTableBody"></tbody>
+                </table>
+            </div>
         </div>
 
         <!-- PAGE: REPORTS (OMZET) -->
         <div id="page-reports" class="page">
-            <div style="display:flex; justify-content:space-between; margin-bottom: 20px;">
-                <h2>Ringkasan Laporan & Omzet</h2>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                <h2 style="margin:0;">Ringkasan Laporan & Omzet</h2>
             </div>
             
-            <div class="stats-row" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="stats-row" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
                 <!-- Harian -->
                 <div class="report-card" id="repContainerHarian">
                     <div class="report-header">
                         <h3 style="margin:0;"><i class="fa-solid fa-calendar-day"></i> Omzet Harian</h3>
-                        <button class="btn-action" onclick="downloadPDF('repContainerHarian', 'Laporan_Harian')"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                        <button class="btn-action" onclick="downloadReportPDF('harian', 'Laporan_Harian')"><i class="fa-solid fa-file-pdf" style="color:var(--danger);"></i> Download PDF</button>
                     </div>
                     <div style="font-size:2rem; font-weight:bold; color:var(--primary); margin-bottom:10px;" id="repOmzetHarian">Rp 0</div>
                     <div id="repDetailHarian" style="font-size:0.9rem; color:var(--secondary);">Memuat data...</div>
@@ -407,7 +477,7 @@
                 <div class="report-card" id="repContainerMingguan">
                     <div class="report-header">
                         <h3 style="margin:0;"><i class="fa-solid fa-calendar-week"></i> Omzet Mingguan</h3>
-                        <button class="btn-action" onclick="downloadPDF('repContainerMingguan', 'Laporan_Mingguan')"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                        <button class="btn-action" onclick="downloadReportPDF('mingguan', 'Laporan_Mingguan')"><i class="fa-solid fa-file-pdf" style="color:var(--danger);"></i> Download PDF</button>
                     </div>
                     <div style="font-size:2rem; font-weight:bold; color:var(--primary); margin-bottom:10px;" id="repOmzetMingguan">Rp 0</div>
                     <div id="repDetailMingguan" style="font-size:0.9rem; color:var(--secondary);">Memuat data...</div>
@@ -417,7 +487,7 @@
                 <div class="report-card" id="repContainerBulanan">
                     <div class="report-header">
                         <h3 style="margin:0;"><i class="fa-solid fa-calendar-days"></i> Omzet Bulanan</h3>
-                        <button class="btn-action" onclick="downloadPDF('repContainerBulanan', 'Laporan_Bulanan')"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                        <button class="btn-action" onclick="downloadReportPDF('bulanan', 'Laporan_Bulanan')"><i class="fa-solid fa-file-pdf" style="color:var(--danger);"></i> Download PDF</button>
                     </div>
                     <div style="font-size:2rem; font-weight:bold; color:var(--primary); margin-bottom:10px;" id="repOmzetBulanan">Rp 0</div>
                     <div id="repDetailBulanan" style="font-size:0.9rem; color:var(--secondary);">Memuat data...</div>
@@ -427,7 +497,7 @@
                 <div class="report-card" id="repContainerTahunan">
                     <div class="report-header">
                         <h3 style="margin:0;"><i class="fa-solid fa-calendar"></i> Omzet Tahunan</h3>
-                        <button class="btn-action" onclick="downloadPDF('repContainerTahunan', 'Laporan_Tahunan')"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                        <button class="btn-action" onclick="downloadReportPDF('tahunan', 'Laporan_Tahunan')"><i class="fa-solid fa-file-pdf" style="color:var(--danger);"></i> Download PDF</button>
                     </div>
                     <div style="font-size:2rem; font-weight:bold; color:var(--primary); margin-bottom:10px;" id="repOmzetTahunan">Rp 0</div>
                     <div id="repDetailTahunan" style="font-size:0.9rem; color:var(--secondary);">Memuat data...</div>
@@ -438,7 +508,7 @@
         <!-- PAGE: SETTINGS -->
         <div id="page-settings" class="page">
             <div class="stat-box" style="display:block; margin-bottom:20px;">
-                <h3>Pengaturan Toko</h3>
+                <h3 style="margin-top:0;">Pengaturan Toko</h3>
                 <div class="form-group">
                     <label>Nama Toko</label>
                     <input id="setShopName" class="form-control" onchange="saveConfig()">
@@ -459,7 +529,7 @@
             </div>
             
             <div class="stat-box" style="display:block;">
-                <h3><i class="fa-solid fa-cloud"></i> Pengaturan Database Online (Firebase)</h3>
+                <h3 style="margin-top:0;"><i class="fa-solid fa-cloud"></i> Pengaturan Database Online (Firebase)</h3>
                 <p style="font-size:0.9rem; color:var(--secondary);">
                     Dengan mengisi konfigurasi ini, data aplikasi Anda akan tersimpan online secara real-time dan aman. Jika dikosongkan, aplikasi menggunakan penyimpanan lokal (offline).
                 </p>
@@ -467,8 +537,10 @@
                     <label>Firebase Database URL</label>
                     <input id="setFirebaseUrl" class="form-control" placeholder="https://proyek-anda.firebaseio.com">
                 </div>
-                <button class="btn btn-primary" onclick="saveFirebaseConfig()">Terapkan & Sinkronisasi Data</button>
-                <button class="btn btn-danger" onclick="reqResetFirebase()">Hapus Sinkronisasi</button>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn btn-primary" onclick="saveFirebaseConfig()">Terapkan & Sinkronisasi Data</button>
+                    <button class="btn btn-danger" onclick="reqResetFirebase()">Hapus Sinkronisasi</button>
+                </div>
             </div>
         </div>
     </div>
@@ -477,7 +549,7 @@
 <!-- MODAL ADD PRODUCT -->
 <div id="modalProd" class="modal-overlay">
     <div class="modal">
-        <h3>Produk</h3>
+        <h3 style="margin-top:0;">Data Produk</h3>
         <input type="hidden" id="pId">
         <div class="form-group">
             <label>Barcode / Kode Barang (Scan disini)</label>
@@ -507,8 +579,8 @@
 <!-- MODAL PAYMENT -->
 <div id="modalPay" class="modal-overlay">
     <div class="modal">
-        <h3>Pembayaran</h3>
-        <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 20px;">
+        <h3 style="margin-top:0;">Pembayaran</h3>
+        <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center; margin-bottom: 20px; border: 1px solid var(--border);">
             <div style="font-size:0.9rem; color:#64748b;">Total Tagihan</div>
             <div id="payTotalDisplay" style="font-size:2rem; font-weight:bold; color:var(--primary);">Rp 0</div>
         </div>
@@ -524,17 +596,17 @@
         <div id="payCashArea">
             <div class="form-group">
                 <label>Uang Diterima</label>
-                <input id="payInput" type="number" class="form-control" style="font-size:1.5rem; text-align:right;" onkeyup="calcChange()">
+                <input id="payInput" type="number" class="form-control" style="font-size:1.5rem; text-align:right; font-weight:bold;" onkeyup="calcChange()">
             </div>
-            <div style="display:flex; justify-content:space-between; font-weight:bold;">
-                <span>Kembali:</span>
+            <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.05rem;">
+                <span id="payChangeLabel">Kembali:</span>
                 <span id="payChangeDisplay" style="color:var(--success);">Rp 0</span>
             </div>
-            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:5px; margin-top:10px;">
-                <button class="btn-action" onclick="quickFill(0)">Pas</button>
-                <button class="btn-action" onclick="quickFill(10000)">10k</button>
-                <button class="btn-action" onclick="quickFill(50000)">50k</button>
-                <button class="btn-action" onclick="quickFill(100000)">100k</button>
+            <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:5px; margin-top:12px;">
+                <button class="btn-action" style="text-align:center; font-weight:600;" onclick="quickFill(0)">Pas</button>
+                <button class="btn-action" style="text-align:center; font-weight:600;" onclick="quickFill(10000)">10k</button>
+                <button class="btn-action" style="text-align:center; font-weight:600;" onclick="quickFill(50000)">50k</button>
+                <button class="btn-action" style="text-align:center; font-weight:600;" onclick="quickFill(100000)">100k</button>
             </div>
         </div>
 
@@ -545,7 +617,7 @@
                     <option value="">-- Pilih Pelanggan --</option>
                 </select>
             </div>
-            <button class="btn btn-secondary" style="width:100%;" onclick="openModalCust()">+ Pelanggan Baru</button>
+            <button class="btn btn-secondary" style="width:100%; justify-content:center;" onclick="openModalCust()">+ Pelanggan Baru</button>
         </div>
 
         <div class="modal-footer">
@@ -558,7 +630,7 @@
 <!-- MODAL ADD CUSTOMER -->
 <div id="modalCust" class="modal-overlay" style="z-index: 1100;">
     <div class="modal">
-        <h3>Tambah Pelanggan</h3>
+        <h3 style="margin-top:0;">Tambah Pelanggan</h3>
         <div class="form-group">
             <label>Nama Pelanggan</label>
             <input id="cName" class="form-control">
@@ -577,7 +649,7 @@
 <!-- MODAL DEBT HISTORY -->
 <div id="modalDebtHistory" class="modal-overlay">
     <div class="modal" style="width:600px;">
-        <h3>Riwayat Hutang: <span id="dhCustName"></span></h3>
+        <h3 style="margin-top:0;">Riwayat Hutang: <span id="dhCustName"></span></h3>
         <p>Sisa Hutang: <b style="color:var(--danger);" id="dhCustDebt">Rp 0</b></p>
         <div style="max-height: 300px; overflow-y: auto;">
             <table>
@@ -591,11 +663,13 @@
     </div>
 </div>
 
-<!-- PRINT AREA (HIDDEN) -->
+<!-- PRINT AREA (HIDDEN - STRUK 58MM DENGAN LOGO) -->
 <div id="printable">
     <div class="struk-header">
-        <h3 id="printShopName" style="margin:0; font-size:14px;">NAMA TOKO</h3>
+        <img src="images/logo-mini-kios.svg" alt="Logo" class="struk-logo" onerror="this.style.display='none'">
+        <h3 id="printShopName" style="margin:0; font-size:14px;">KIOS MINI PRO</h3>
         <div id="printDate" style="font-size:10px;">Date</div>
+        <div id="printCustomerLine" style="font-size:10px; font-weight:bold; display:none;">Pelanggan: <span id="printCustomerName"></span></div>
     </div>
     <div class="struk-divider"></div>
     <div id="printItems"></div>
@@ -632,9 +706,8 @@
     let cart = [];
     let scanBuffer = "";
     let scanTimeout;
-    let currentTx = null;
     let confirmCallback = null;
-    let fbApp = null; // Firebase Instance
+    let fbApp = null;
 
     // --- INITIALIZATION ---
     window.onload = () => {
@@ -646,10 +719,10 @@
         updateClock();
         setInterval(updateClock, 1000);
         
-        // Barcode Scanner Listener
+        // Global Hardware Barcode Scanner Listener
         document.addEventListener('keydown', e => {
             if(document.getElementById('login-view').style.display === 'flex') return;
-            if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return; 
+            if(e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return; 
             
             if(e.key === 'Enter') {
                 if(scanBuffer) handleBarcode(scanBuffer);
@@ -657,7 +730,7 @@
             } else if (e.key.length === 1) {
                 scanBuffer += e.key;
                 clearTimeout(scanTimeout);
-                scanTimeout = setTimeout(() => scanBuffer = "", 100);
+                scanTimeout = setTimeout(() => scanBuffer = "", 120);
             }
         });
     };
@@ -671,6 +744,7 @@
         let icon = '<i class="fa-solid fa-circle-info"></i>';
         if(type==='success') icon = '<i class="fa-solid fa-circle-check"></i>';
         if(type==='error') icon = '<i class="fa-solid fa-circle-xmark"></i>';
+        if(type==='warning') icon = '<i class="fa-solid fa-triangle-exclamation"></i>';
         
         toast.innerHTML = `${icon} <span>${msg}</span>`;
         container.appendChild(toast);
@@ -705,19 +779,45 @@
         document.getElementById('clock').innerText = now.toLocaleDateString('id-ID', opts);
     }
 
+    // Helper: Parsing tanggal transaksi secara akurat (mendukung ISO timestamp maupun format DD/MM/YYYY lama)
+    function parseTxDate(tx) {
+        if (tx.timestamp) {
+            return new Date(tx.timestamp);
+        }
+        if (tx.date) {
+            const parts = tx.date.split(/[\/, :.-]/);
+            if (parts.length >= 3) {
+                const d = parseInt(parts[0], 10);
+                const m = parseInt(parts[1], 10) - 1;
+                const y = parseInt(parts[2], 10);
+                return new Date(y, m, d);
+            }
+        }
+        return new Date();
+    }
+
     // --- DATA HANDLING (LOCAL + FIREBASE) ---
     function loadData() {
         const saved = localStorage.getItem('kiosmini_desktop');
         if(saved) db = JSON.parse(saved);
-        if(!db.config) db.config = { name: 'KIOS MINI PRO', footer: 'Terimakasih', password: 'admin', firebaseUrl: '' };
+        if(!db.config) db.config = { name: 'KIOS MINI PRO', footer: 'Terimakasih telah berbelanja', password: 'admin', firebaseUrl: '' };
         if(!db.debtHistory) db.debtHistory = [];
+        if(!db.products) db.products = [];
+        if(!db.customers) db.customers = [];
+        if(!db.transactions) db.transactions = [];
 
-        document.getElementById('setShopName').value = db.config.name;
-        document.getElementById('setShopFooter').value = db.config.footer;
-        document.getElementById('setFirebaseUrl').value = db.config.firebaseUrl || '';
-        
+        applyShopBranding();
         initFirebase();
         refreshAll();
+    }
+
+    function applyShopBranding() {
+        const shopName = db.config.name || 'KIOS MINI PRO';
+        document.getElementById('setShopName').value = shopName;
+        document.getElementById('setShopFooter').value = db.config.footer || '';
+        document.getElementById('setFirebaseUrl').value = db.config.firebaseUrl || '';
+        document.getElementById('loginBrandTitle').innerText = shopName;
+        document.getElementById('sidebarBrandName').innerText = shopName;
     }
 
     function saveData() {
@@ -743,18 +843,26 @@
                     firebase.initializeApp({ databaseURL: db.config.firebaseUrl.trim() });
                 }
                 fbApp = firebase;
-                document.getElementById('dbStatusIndicator').innerHTML = '<span style="color:#10b981;"><i class="fa-solid fa-cloud-arrow-up"></i> DB: Online (Firebase)</span>';
+                document.getElementById('dbStatusIndicator').innerHTML = '<span style="color:#a7f3d0;"><i class="fa-solid fa-cloud-arrow-up"></i> DB: Online (Firebase)</span>';
                 
-                // Fetch data once on load
                 firebase.database().ref('kiosData').once('value').then(snap => {
                     if(snap.exists()) {
-                        db = snap.val();
-                        if(!db.debtHistory) db.debtHistory = [];
+                        const cloudData = snap.val();
+                        db = {
+                            products: cloudData.products || [],
+                            customers: cloudData.customers || [],
+                            transactions: cloudData.transactions || [],
+                            debtHistory: cloudData.debtHistory || [],
+                            config: cloudData.config || db.config
+                        };
                         localStorage.setItem('kiosmini_desktop', JSON.stringify(db));
+                        applyShopBranding();
                         refreshAll();
                         showToast('Data berhasil disinkronisasi dari Cloud', 'success');
+                    } else {
+                        syncToFirebase();
                     }
-                }).catch(e => {
+                }).catch(() => {
                     showToast('Gagal terhubung ke Database Online', 'error');
                 });
             } catch(e) {
@@ -768,7 +876,7 @@
 
     function syncToFirebase() {
         if(fbApp) {
-            firebase.database().ref('kiosData').set(db).catch(e => {
+            firebase.database().ref('kiosData').set(db).catch(() => {
                 showToast('Gagal sinkronisasi data ke Cloud', 'error');
             });
         }
@@ -778,11 +886,12 @@
         const url = document.getElementById('setFirebaseUrl').value;
         db.config.firebaseUrl = url;
         saveData();
-        showToast('Konfigurasi database disimpan. Me-restart koneksi...', 'info');
+        showToast('Konfigurasi database disimpan. Memuat ulang...', 'info');
         setTimeout(() => window.location.reload(), 1000);
     }
+
     function reqResetFirebase() {
-        showConfirm('Hapus koneksi Firebase? Aplikasi akan kembali offline.', () => {
+        showConfirm('Hapus koneksi Firebase? Aplikasi akan kembali ke penyimpanan offline.', () => {
             db.config.firebaseUrl = '';
             document.getElementById('setFirebaseUrl').value = '';
             saveData();
@@ -833,8 +942,9 @@
     }
 
     function saveConfig() {
-        db.config.name = document.getElementById('setShopName').value;
+        db.config.name = document.getElementById('setShopName').value || 'KIOS MINI PRO';
         db.config.footer = document.getElementById('setShopFooter').value;
+        applyShopBranding();
         saveData();
         showToast('Pengaturan disimpan', 'success');
     }
@@ -845,13 +955,16 @@
         document.getElementById('page-' + pageId).classList.add('active');
         
         document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
-        const btns = document.querySelectorAll('.menu-btn');
-        btns.forEach(b => {
-            if(b.onclick.toString().includes(pageId)) b.classList.add('active');
+        document.querySelectorAll('.menu-btn').forEach(b => {
+            if(b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${pageId}'`)) b.classList.add('active');
         });
 
         const titles = { 'dashboard':'Dashboard', 'pos':'Kasir (POS)', 'products':'Inventaris Barang', 'customers':'Pelanggan & Hutang', 'history':'Riwayat Transaksi', 'reports':'Laporan & Omzet', 'settings':'Pengaturan' };
         document.getElementById('pageTitle').innerText = titles[pageId];
+        
+        if(pageId === 'pos') {
+            setTimeout(() => document.getElementById('posSearch').focus(), 100);
+        }
     }
 
     // --- POS & CART ---
@@ -862,16 +975,39 @@
 
         const filtered = db.products.filter(p => p.name.toLowerCase().includes(term) || p.code.toLowerCase().includes(term));
 
+        if(filtered.length === 0) {
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--secondary);">Barang tidak ditemukan. Silakan tambah di menu Inventaris.</div>';
+            return;
+        }
+
         filtered.forEach(p => {
+            const isOut = p.stock <= 0;
             grid.innerHTML += `
-                <div class="product-card" onclick="addToCart(${p.id})">
+                <div class="product-card ${isOut ? 'out-of-stock' : ''}" onclick="addToCart(${p.id})">
                     <div class="card-icon"><i class="fa-solid fa-box-open"></i></div>
                     <div class="card-title">${p.name}</div>
                     <div class="card-price">${fmt(p.price)}</div>
-                    <div class="card-stock ${p.stock<=5?'low':''}">Stok: ${p.stock}</div>
+                    <div class="card-stock ${p.stock<=5?'low':''}">${isOut ? 'Stok Habis' : 'Stok: ' + p.stock}</div>
                 </div>
             `;
         });
+    }
+
+    function handlePosSearchEnter(e) {
+        if (e.key === 'Enter') {
+            const code = document.getElementById('posSearch').value.trim();
+            if (!code) return;
+            const exact = db.products.find(p => p.code.toLowerCase() === code.toLowerCase());
+            if (exact) {
+                addToCart(exact.id);
+                document.getElementById('posSearch').value = '';
+                renderPOS();
+            } else {
+                handleBarcode(code);
+                document.getElementById('posSearch').value = '';
+                renderPOS();
+            }
+        }
     }
 
     function addToCart(id) {
@@ -899,8 +1035,8 @@
             container.innerHTML += `
                 <div class="cart-item">
                     <div class="item-info">
-                        <div>${item.name}</div>
-                        <div>${fmt(item.price)}</div>
+                        <div title="${item.name}">${item.name}</div>
+                        <div>${fmt(item.price)} x ${item.qty} = <b>${fmt(item.price * item.qty)}</b></div>
                     </div>
                     <div class="qty-control">
                         <div class="qty-btn" onclick="modQty(${item.id}, -1)">-</div>
@@ -912,7 +1048,7 @@
         });
 
         document.getElementById('cartTotal').innerText = fmt(total);
-        if(cart.length === 0) container.innerHTML = '<div style="text-align:center; margin-top:50px; color:#ccc;"><i class="fa-solid fa-cart-arrow-down" style="font-size:3rem;"></i><br>Keranjang Kosong</div>';
+        if(cart.length === 0) container.innerHTML = '<div style="text-align:center; margin-top:50px; color:#cbd5e1;"><i class="fa-solid fa-cart-arrow-down" style="font-size:3rem; margin-bottom:10px;"></i><br>Keranjang Kosong</div>';
         
         document.getElementById('payTotalDisplay').innerText = fmt(total);
     }
@@ -931,7 +1067,7 @@
     function updateQtyManually(id, val) {
         const item = cart.find(x => x.id === id);
         const prod = db.products.find(x => x.id === id);
-        let newQty = parseInt(val);
+        let newQty = parseInt(val, 10);
         if (isNaN(newQty) || newQty <= 0) {
             cart = cart.filter(x => x.id !== id);
         } else {
@@ -946,7 +1082,7 @@
 
     function reqClearCart() { 
         if(cart.length === 0) return;
-        showConfirm('Kosongkan keranjang?', () => { cart = []; renderCart(); });
+        showConfirm('Kosongkan keranjang belanja?', () => { cart = []; renderCart(); });
     }
 
     // --- PAYMENT ---
@@ -954,8 +1090,9 @@
         if(cart.length === 0) return showToast('Belum ada barang di keranjang', 'warning');
         document.getElementById('modalPay').style.display = 'flex';
         document.getElementById('payInput').value = '';
-        document.getElementById('payInput').focus();
+        document.getElementById('payMethod').value = 'cash';
         togglePayMethod();
+        setTimeout(() => document.getElementById('payInput').focus(), 100);
         
         const sel = document.getElementById('payCustomer');
         sel.innerHTML = '<option value="">-- Pilih Pelanggan --</option>';
@@ -979,9 +1116,20 @@
 
     function calcChange() {
         const total = cart.reduce((a,b) => a + (b.price*b.qty), 0);
-        const pay = parseInt(document.getElementById('payInput').value) || 0;
+        const pay = parseInt(document.getElementById('payInput').value, 10) || 0;
         const change = pay - total;
-        document.getElementById('payChangeDisplay').innerText = fmt(change);
+        const labelEl = document.getElementById('payChangeLabel');
+        const displayEl = document.getElementById('payChangeDisplay');
+
+        if (change >= 0) {
+            labelEl.innerText = 'Kembali:';
+            displayEl.innerText = fmt(change);
+            displayEl.style.color = 'var(--success)';
+        } else {
+            labelEl.innerText = 'Kurang:';
+            displayEl.innerText = fmt(Math.abs(change));
+            displayEl.style.color = 'var(--danger)';
+        }
         document.getElementById('btnConfirmPay').disabled = pay < total;
     }
 
@@ -995,23 +1143,23 @@
         const method = document.getElementById('payMethod').value;
         const total = cart.reduce((a,b) => a + (b.price*b.qty), 0);
         
-        // Buat Tanggal
-        const today = new Date();
-        const dateStr = today.toLocaleString('id-ID', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+        const now = new Date();
+        const dateStr = now.toLocaleString('id-ID', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+        const timestamp = now.toISOString();
         
         let pay = 0, change = 0, custId = null, custName = "Umum";
 
         if(method === 'cash') {
-            pay = parseInt(document.getElementById('payInput').value);
+            pay = parseInt(document.getElementById('payInput').value, 10);
+            if(isNaN(pay) || pay < total) return showToast("Uang pembayaran kurang!", 'error');
             change = pay - total;
         } else {
             custId = document.getElementById('payCustomer').value;
             if(!custId) return showToast("Pilih pelanggan untuk kasbon!", 'error');
             const cust = db.customers.find(c => c.id == custId);
             custName = cust.name;
-            cust.debt += total;
+            cust.debt = (cust.debt || 0) + total;
             
-            // Catat ke riwayat hutang
             db.debtHistory.push({
                 id: Date.now(),
                 custId: cust.id,
@@ -1025,12 +1173,13 @@
         // Potong stok
         cart.forEach(item => {
             const prod = db.products.find(p => p.id === item.id);
-            if(prod) prod.stock -= item.qty;
+            if(prod) prod.stock = Math.max(0, prod.stock - item.qty);
         });
 
         const tx = {
             id: Date.now(),
             date: dateStr,
+            timestamp: timestamp,
             items: [...cart],
             total: total,
             pay: pay,
@@ -1052,27 +1201,41 @@
 
     // --- PRINTING ---
     function printStruk(tx) {
-        document.getElementById('printShopName').innerText = db.config.name;
+        if(!tx) return;
+        document.getElementById('printShopName').innerText = db.config.name || 'KIOS MINI PRO';
         document.getElementById('printDate').innerText = tx.date;
-        document.getElementById('printFooter').innerText = db.config.footer;
+        document.getElementById('printFooter').innerText = db.config.footer || '';
         
+        const custLine = document.getElementById('printCustomerLine');
+        if (tx.customer && tx.customer !== 'Umum') {
+            custLine.style.display = 'block';
+            document.getElementById('printCustomerName').innerText = tx.customer;
+        } else {
+            custLine.style.display = 'none';
+        }
+
         let itemsHTML = '';
         tx.items.forEach(i => {
             itemsHTML += `
             <div class="struk-item">
                 <span>${i.name}</span>
             </div>
-            <div class="struk-item" style="font-size:0.9em; color:#555;">
+            <div class="struk-item" style="font-size:0.95em; color:#333;">
                 <span>${i.qty} x ${fmt(i.price)}</span>
                 <span>${fmt(i.qty * i.price)}</span>
             </div>`;
         });
         document.getElementById('printItems').innerHTML = itemsHTML;
         document.getElementById('printTotal').innerText = fmt(tx.total);
-        document.getElementById('printPay').innerText = tx.method==='debt' ? 'KASBON' : fmt(tx.pay);
+        document.getElementById('printPay').innerText = tx.method==='debt' ? 'KASBON / HUTANG' : fmt(tx.pay);
         document.getElementById('printChange').innerText = tx.method==='debt' ? '-' : fmt(tx.change);
 
         window.print();
+    }
+
+    function reprintStruk(txId) {
+        const tx = db.transactions.find(x => String(x.id) === String(txId));
+        if(tx) printStruk(tx);
     }
 
     function printBarcode(code, name) {
@@ -1083,7 +1246,7 @@
             
             const link = document.createElement('a');
             link.href = dataUrl;
-            link.download = `Barcode_${name}_${code}.png`;
+            link.download = `Barcode_${name.replace(/\s+/g, '_')}_${code}.png`;
             link.click();
             showToast('Barcode berhasil diunduh', 'success');
         } catch (e) {
@@ -1099,12 +1262,12 @@
         db.products.filter(p => p.name.toLowerCase().includes(term) || p.code.toLowerCase().includes(term)).forEach(p => {
             tbody.innerHTML += `
                 <tr>
-                    <td>${p.code}</td>
-                    <td>${p.name}</td>
+                    <td><code>${p.code}</code></td>
+                    <td><b>${p.name}</b></td>
                     <td>${fmt(p.price)}</td>
-                    <td>${p.stock}</td>
+                    <td style="color:${p.stock<=5 ? 'var(--danger)' : 'inherit'}; font-weight:${p.stock<=5 ? 'bold' : 'normal'};">${p.stock}</td>
                     <td>
-                        <button class="btn-action" title="Cetak Barcode" onclick="printBarcode('${p.code}', '${p.name}')"><i class="fa-solid fa-barcode"></i></button>
+                        <button class="btn-action" title="Download Barcode" onclick="printBarcode('${p.code}', '${p.name.replace(/'/g, "\\'")}')"><i class="fa-solid fa-barcode"></i></button>
                         <button class="btn-action" title="Edit" onclick="editProduct(${p.id})"><i class="fa-solid fa-pen"></i></button>
                         <button class="btn-action" style="color:var(--danger);" title="Hapus" onclick="reqDelProd(${p.id})"><i class="fa-solid fa-trash"></i></button>
                     </td>
@@ -1125,17 +1288,19 @@
 
     function saveProduct() {
         const id = document.getElementById('pId').value;
-        const code = document.getElementById('pCode').value || 'M-'+Date.now();
-        const name = document.getElementById('pName').value;
-        const price = parseInt(document.getElementById('pPrice').value);
-        const stock = parseInt(document.getElementById('pStock').value);
+        const code = document.getElementById('pCode').value.trim() || 'M-'+Date.now();
+        const name = document.getElementById('pName').value.trim();
+        const price = parseInt(document.getElementById('pPrice').value, 10);
+        const stock = parseInt(document.getElementById('pStock').value, 10);
 
         if(!name || isNaN(price)) return showToast("Nama dan harga wajib diisi", 'error');
 
         if(id) {
             const idx = db.products.findIndex(p => p.id == id);
-            db.products[idx] = { id: parseInt(id), code, name, price, stock: isNaN(stock)?0:stock };
-            showToast('Produk diperbarui', 'success');
+            if(idx > -1) {
+                db.products[idx] = { id: parseInt(id, 10), code, name, price, stock: isNaN(stock)?0:stock };
+                showToast('Produk diperbarui', 'success');
+            }
         } else {
             db.products.push({ id: Date.now(), code, name, price, stock: isNaN(stock)?0:stock });
             showToast('Produk ditambahkan', 'success');
@@ -1146,6 +1311,7 @@
 
     function editProduct(id) {
         const p = db.products.find(x => x.id === id);
+        if(!p) return;
         document.getElementById('pId').value = p.id;
         document.getElementById('pCode').value = p.code;
         document.getElementById('pName').value = p.name;
@@ -1165,7 +1331,7 @@
     function handleBarcode(code) {
         code = code.trim();
         if (!code) return;
-        const p = db.products.find(x => x.code === code);
+        const p = db.products.find(x => x.code.toLowerCase() === code.toLowerCase());
         
         if(p) {
             if(!document.getElementById('page-pos').classList.contains('active')) nav('pos');
@@ -1175,12 +1341,12 @@
                 nav('products');
                 openModalProd();
                 document.getElementById('pCode').value = code;
-                setTimeout(() => document.getElementById('pName').focus(), 300);
+                setTimeout(() => document.getElementById('pName').focus(), 200);
             });
         }
     }
 
-    // --- CUSTOMER MANAGEMENT & DEBT HISTORY ---
+    // --- CUSTOMER MANAGEMENT & DEBT HISTORY (BUG FIXED: Tanpa prompt() ganda) ---
     function renderCustTable() {
         const term = document.getElementById('custSearch').value.toLowerCase();
         const tbody = document.getElementById('custTableBody');
@@ -1188,13 +1354,13 @@
         db.customers.filter(c => c.name.toLowerCase().includes(term)).forEach(c => {
             tbody.innerHTML += `
                 <tr>
-                    <td>${c.name}</td>
+                    <td><b>${c.name}</b></td>
                     <td>${c.phone||'-'}</td>
                     <td style="color:${c.debt > 0 ? 'var(--danger)' : 'var(--success)'}; font-weight:bold;">${fmt(c.debt)}</td>
                     <td>
                         <button class="btn-action" onclick="showDebtHistory(${c.id})" title="Riwayat Hutang"><i class="fa-solid fa-clock-rotate-left"></i></button>
-                        <button class="btn-action" onclick="payDebtPrompt(${c.id})" title="Bayar Hutang"><i class="fa-solid fa-money-bill"></i> Bayar</button>
-                        <button class="btn-action" style="color:var(--danger);" onclick="reqDelCust(${c.id})"><i class="fa-solid fa-trash"></i></button>
+                        <button class="btn-action" onclick="openPayDebtModal(${c.id})" title="Bayar Hutang"><i class="fa-solid fa-money-bill"></i> Bayar</button>
+                        <button class="btn-action" style="color:var(--danger);" onclick="reqDelCust(${c.id})" title="Hapus Pelanggan"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
             `;
@@ -1205,52 +1371,71 @@
         document.getElementById('cName').value = '';
         document.getElementById('cPhone').value = '';
         document.getElementById('modalCust').style.display = 'flex'; 
+        setTimeout(() => document.getElementById('cName').focus(), 100);
     }
     
     function saveCustomer() {
-        const name = document.getElementById('cName').value;
-        const phone = document.getElementById('cPhone').value;
+        const name = document.getElementById('cName').value.trim();
+        const phone = document.getElementById('cPhone').value.trim();
         if(!name) return showToast("Nama pelanggan wajib diisi", 'error');
         db.customers.push({ id: Date.now(), name, phone, debt: 0 });
         saveData();
         document.getElementById('modalCust').style.display = 'none';
         showToast('Pelanggan disimpan', 'success');
-        if(document.getElementById('modalPay').style.display === 'flex') openPayment();
+        if(document.getElementById('modalPay').style.display === 'flex') {
+            const sel = document.getElementById('payCustomer');
+            sel.innerHTML = '<option value="">-- Pilih Pelanggan --</option>';
+            db.customers.forEach(c => {
+                sel.innerHTML += `<option value="${c.id}">${c.name}</option>`;
+            });
+        }
     }
 
-    function payDebtPrompt(id) {
+    function openPayDebtModal(id) {
         const c = db.customers.find(x => x.id === id);
-        if(c.debt <= 0) return showToast('Tidak ada hutang', 'info');
+        if(!c || c.debt <= 0) return showToast('Pelanggan tidak memiliki hutang', 'info');
         
-        // Using a custom built prompt logic via a modified UI would be ideal, but for simplicity within single file, 
-        // we'll inject a specialized modal dynamically or repurpose the confirm modal.
-        // Let's create a quick local UI injection for payment prompt to avoid 'prompt()' usage.
-        const payAmountStr = prompt(`Hutang saat ini: ${fmt(c.debt)}\nMasukkan nominal bayar:`); // Exception: To fully avoid prompt, we'd need another modal. I'll build a quick logic.
-        // Let's replace prompt with a proper non-blocking flow.
-        
-        // Real replacement for prompt:
-        document.getElementById('confirmMessage').innerHTML = `
-            Hutang saat ini: <b>${fmt(c.debt)}</b><br><br>
-            <input type="number" id="quickPayDebtInput" class="form-control" placeholder="Nominal bayar...">
-        `;
-        document.getElementById('modalConfirm').style.display = 'flex';
-        confirmCallback = () => {
-            const pay = parseInt(document.getElementById('quickPayDebtInput').value);
-            if(pay && pay > 0) {
-                c.debt -= pay;
-                const dateStr = new Date().toLocaleString('id-ID', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
-                db.debtHistory.push({
-                    id: Date.now(), custId: c.id, date: dateStr, desc: 'Pembayaran Cicilan', amount: pay, type: 'pay'
-                });
-                saveData();
-                showToast(`Pembayaran Rp ${pay} berhasil`, 'success');
-            }
-        };
-        setTimeout(() => document.getElementById('quickPayDebtInput').focus(), 100);
+        document.getElementById('debtModalCustId').value = c.id;
+        document.getElementById('debtModalCustName').innerText = c.name;
+        document.getElementById('debtModalRemaining').innerText = fmt(c.debt);
+        document.getElementById('debtModalInput').value = '';
+        document.getElementById('modalPayDebt').style.display = 'flex';
+        setTimeout(() => document.getElementById('debtModalInput').focus(), 100);
+    }
+
+    function fillFullDebt() {
+        const id = document.getElementById('debtModalCustId').value;
+        const c = db.customers.find(x => x.id == id);
+        if(c) document.getElementById('debtModalInput').value = c.debt;
+    }
+
+    function submitPayDebt() {
+        const id = document.getElementById('debtModalCustId').value;
+        const c = db.customers.find(x => x.id == id);
+        if(!c) return;
+
+        const pay = parseInt(document.getElementById('debtModalInput').value, 10);
+        if(isNaN(pay) || pay <= 0) return showToast('Masukkan nominal pembayaran yang valid', 'error');
+        if(pay > c.debt) return showToast('Nominal bayar melebihi sisa hutang!', 'error');
+
+        c.debt -= pay;
+        const dateStr = new Date().toLocaleString('id-ID', {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
+        db.debtHistory.push({
+            id: Date.now(), 
+            custId: c.id, 
+            date: dateStr, 
+            desc: c.debt === 0 ? 'Pelunasan Hutang' : 'Pembayaran Cicilan', 
+            amount: pay, 
+            type: 'pay'
+        });
+        saveData();
+        closeModal();
+        showToast(`Pembayaran ${fmt(pay)} berhasil dicatat`, 'success');
     }
 
     function showDebtHistory(id) {
         const c = db.customers.find(x => x.id === id);
+        if(!c) return;
         const history = db.debtHistory.filter(h => h.custId === id).reverse();
         
         document.getElementById('dhCustName').innerText = c.name;
@@ -1295,10 +1480,10 @@
                 <tr>
                     <td>${t.date}</td>
                     <td>${t.customer || 'Umum'}</td>
-                    <td>${t.items.length} Item</td>
-                    <td>${fmt(t.total)}</td>
-                    <td>${t.method === 'debt' ? '<span style="color:var(--danger)">Hutang</span>' : 'Tunai'}</td>
-                    <td><button class="btn-action" onclick="printStruk(db.transactions.find(x=>x.id===${t.id}))"><i class="fa-solid fa-print"></i></button></td>
+                    <td>${t.items ? t.items.length : 0} Item</td>
+                    <td><b>${fmt(t.total)}</b></td>
+                    <td>${t.method === 'debt' ? '<span style="color:var(--danger); font-weight:bold;">Hutang</span>' : '<span style="color:var(--success); font-weight:bold;">Tunai</span>'}</td>
+                    <td><button class="btn-action" title="Cetak Ulang Struk" onclick="reprintStruk('${t.id}')"><i class="fa-solid fa-print"></i></button></td>
                 </tr>
             `;
         });
@@ -1316,109 +1501,149 @@
 
     function renderStats() {
         const now = new Date();
-        const todayStr = now.toLocaleDateString('id-ID'); // Harian format fallback comparison
+        const todayY = now.getFullYear();
+        const todayM = now.getMonth();
+        const todayD = now.getDate();
         
         let omzetToday = 0;
         let txToday = 0;
 
         db.transactions.forEach(t => {
-            // Parses "DD/MM/YYYY, HH:MM" to compare DD/MM/YYYY
-            const tDateStr = t.date.split(',')[0].trim(); 
-            if(tDateStr === todayStr || t.date.includes(todayStr)) {
-                omzetToday += t.total;
+            const d = parseTxDate(t);
+            if(d.getFullYear() === todayY && d.getMonth() === todayM && d.getDate() === todayD) {
+                omzetToday += (t.total || 0);
                 txToday++;
             }
         });
 
-        const debt = db.customers.reduce((sum, c) => sum + c.debt, 0);
+        const debt = db.customers.reduce((sum, c) => sum + (c.debt || 0), 0);
 
         document.getElementById('statOmzet').innerText = fmt(omzetToday);
         document.getElementById('statTx').innerText = txToday;
         document.getElementById('statDebt').innerText = fmt(debt);
 
+        // Produk terlaris (menghitung total qty terjual per produk secara akurat)
         const counts = {};
-        const currMonth = now.getMonth();
         db.transactions.forEach(t => {
-            // simplistic check for month (just for top products)
-            counts[t.items[0]?.name || 'Unknown'] = (counts[t.items[0]?.name || 'Unknown'] || 0) + 1; 
-            t.items.forEach(i => { counts[i.name] = (counts[i.name] || 0) + i.qty; });
+            if(t.items) {
+                t.items.forEach(i => { 
+                    counts[i.name] = (counts[i.name] || 0) + (i.qty || 0); 
+                });
+            }
         });
         
         const sorted = Object.entries(counts).sort((a,b) => b[1] - a[1]).slice(0, 5);
-        document.getElementById('topProductsList').innerHTML = sorted.map(([n,q], i) => `<div style="padding:8px 0; border-bottom:1px dashed #eee;">${i+1}. ${n} <b style="float:right;">${q} Terjual</b></div>`).join('') || "Belum ada data";
+        document.getElementById('topProductsList').innerHTML = sorted.map(([n,q], i) => `<div style="padding:8px 0; border-bottom:1px dashed #eee;">${i+1}. ${n} <b style="float:right; color:var(--primary);">${q} Terjual</b></div>`).join('') || "Belum ada data";
 
         const low = db.products.filter(p => p.stock <= 5);
-        document.getElementById('lowStockList').innerHTML = low.map(p => `<div style="padding:8px 0; color:var(--danger); border-bottom:1px dashed #eee;">${p.name} <b style="float:right;">Sisa ${p.stock}</b></div>`).join('') || "<div style='color:var(--success);'>Semua Stok Aman</div>";
+        document.getElementById('lowStockList').innerHTML = low.map(p => `<div style="padding:8px 0; color:var(--danger); border-bottom:1px dashed #eee;">${p.name} <b style="float:right;">Sisa ${p.stock}</b></div>`).join('') || "<div style='color:var(--success); font-weight:600;'>Semua Stok Aman</div>";
     }
 
     // --- OMZET & REPORT CALCULATIONS ---
-    function renderReports() {
+    function getFilteredTransactionsByPeriod(period) {
         const now = new Date();
-        let omzetHarian = 0, omzetMingguan = 0, omzetBulanan = 0, omzetTahunan = 0;
-        let txH = 0, txM = 0, txB = 0, txT = 0;
-
         const day = now.getDate();
         const month = now.getMonth();
         const year = now.getFullYear();
         
-        // Simple start of week (Sunday)
         const startOfWeek = new Date(now);
         startOfWeek.setDate(now.getDate() - now.getDay()); 
         startOfWeek.setHours(0,0,0,0);
 
-        db.transactions.forEach(t => {
-            // Parsing format "DD/MM/YYYY, HH:MM"
-            const parts = t.date.split(/[\/, :]/);
-            if(parts.length >= 3) {
-                const tDay = parseInt(parts[0]);
-                const tMonth = parseInt(parts[1]) - 1; // 0-indexed
-                const tYear = parseInt(parts[2]);
-                const tDate = new Date(tYear, tMonth, tDay);
+        return db.transactions.filter(t => {
+            const tDate = parseTxDate(t);
+            const tDay = tDate.getDate();
+            const tMonth = tDate.getMonth();
+            const tYear = tDate.getFullYear();
 
-                // Tahunan
-                if(tYear === year) { omzetTahunan += t.total; txT++; }
-                // Bulanan
-                if(tYear === year && tMonth === month) { omzetBulanan += t.total; txB++; }
-                // Mingguan
-                if(tDate >= startOfWeek) { omzetMingguan += t.total; txM++; }
-                // Harian
-                if(tYear === year && tMonth === month && tDay === day) { omzetHarian += t.total; txH++; }
-            }
+            if (period === 'harian') return tYear === year && tMonth === month && tDay === day;
+            if (period === 'mingguan') return tDate >= startOfWeek;
+            if (period === 'bulanan') return tYear === year && tMonth === month;
+            if (period === 'tahunan') return tYear === year;
+            return false;
         });
-
-        document.getElementById('repOmzetHarian').innerText = fmt(omzetHarian);
-        document.getElementById('repDetailHarian').innerText = `${txH} Transaksi Terjadi Hari Ini`;
-        
-        document.getElementById('repOmzetMingguan').innerText = fmt(omzetMingguan);
-        document.getElementById('repDetailMingguan').innerText = `${txM} Transaksi Minggu Ini`;
-
-        document.getElementById('repOmzetBulanan').innerText = fmt(omzetBulanan);
-        document.getElementById('repDetailBulanan').innerText = `${txB} Transaksi Bulan Ini`;
-
-        document.getElementById('repOmzetTahunan').innerText = fmt(omzetTahunan);
-        document.getElementById('repDetailTahunan').innerText = `${txT} Transaksi Tahun Ini`;
     }
 
-    function downloadPDF(elementId, filename) {
-        const element = document.getElementById(elementId);
+    function renderReports() {
+        const txHarian = getFilteredTransactionsByPeriod('harian');
+        const txMingguan = getFilteredTransactionsByPeriod('mingguan');
+        const txBulanan = getFilteredTransactionsByPeriod('bulanan');
+        const txTahunan = getFilteredTransactionsByPeriod('tahunan');
+
+        const sumTotal = (arr) => arr.reduce((s, t) => s + (t.total || 0), 0);
+
+        document.getElementById('repOmzetHarian').innerText = fmt(sumTotal(txHarian));
+        document.getElementById('repDetailHarian').innerText = `${txHarian.length} Transaksi Terjadi Hari Ini`;
+        
+        document.getElementById('repOmzetMingguan').innerText = fmt(sumTotal(txMingguan));
+        document.getElementById('repDetailMingguan').innerText = `${txMingguan.length} Transaksi Minggu Ini`;
+
+        document.getElementById('repOmzetBulanan').innerText = fmt(sumTotal(txBulanan));
+        document.getElementById('repDetailBulanan').innerText = `${txBulanan.length} Transaksi Bulan Ini`;
+
+        document.getElementById('repOmzetTahunan').innerText = fmt(sumTotal(txTahunan));
+        document.getElementById('repDetailTahunan').innerText = `${txTahunan.length} Transaksi Tahun Ini`;
+    }
+
+    function downloadReportPDF(period, filenamePrefix) {
+        const list = getFilteredTransactionsByPeriod(period);
+        const totalOmzet = list.reduce((s, t) => s + (t.total || 0), 0);
+        const shopName = db.config.name || 'KIOS MINI PRO';
+        const periodTitles = { harian: 'Harian', mingguan: 'Mingguan', bulanan: 'Bulanan', tahunan: 'Tahunan' };
+
+        const wrapper = document.createElement('div');
+        wrapper.style.padding = '20px';
+        wrapper.style.fontFamily = 'Arial, sans-serif';
+        wrapper.style.color = '#0f172a';
+
+        let rowsHtml = list.map((t, idx) => `
+            <tr>
+                <td style="border:1px solid #cbd5e1; padding:6px;">${idx + 1}</td>
+                <td style="border:1px solid #cbd5e1; padding:6px;">${t.date}</td>
+                <td style="border:1px solid #cbd5e1; padding:6px;">${t.customer || 'Umum'}</td>
+                <td style="border:1px solid #cbd5e1; padding:6px;">${t.method === 'debt' ? 'Hutang' : 'Tunai'}</td>
+                <td style="border:1px solid #cbd5e1; padding:6px; text-align:right;">${fmt(t.total)}</td>
+            </tr>
+        `).join('');
+
+        if (list.length === 0) {
+            rowsHtml = `<tr><td colspan="5" style="border:1px solid #cbd5e1; padding:10px; text-align:center;">Tidak ada transaksi pada periode ini.</td></tr>`;
+        }
+
+        wrapper.innerHTML = `
+            <h2 style="margin:0 0 4px 0; color:#2563eb;">${shopName}</h2>
+            <h3 style="margin:0 0 12px 0;">Laporan Omzet ${periodTitles[period]}</h3>
+            <p style="font-size:12px; color:#475569; margin:0 0 15px 0;">Dicetak pada: ${new Date().toLocaleString('id-ID')}</p>
+            <div style="background:#f8fafc; padding:12px; border:1px solid #e2e8f0; border-radius:6px; margin-bottom:15px;">
+                <div>Total Transaksi: <b>${list.length} Transaksi</b></div>
+                <div style="font-size:16px; margin-top:4px;">Total Omzet: <b style="color:#2563eb;">${fmt(totalOmzet)}</b></div>
+            </div>
+            <table style="width:100%; border-collapse:collapse; font-size:11px;">
+                <thead>
+                    <tr style="background:#eff6ff;">
+                        <th style="border:1px solid #cbd5e1; padding:6px; text-align:left;">No</th>
+                        <th style="border:1px solid #cbd5e1; padding:6px; text-align:left;">Waktu</th>
+                        <th style="border:1px solid #cbd5e1; padding:6px; text-align:left;">Pelanggan</th>
+                        <th style="border:1px solid #cbd5e1; padding:6px; text-align:left;">Metode</th>
+                        <th style="border:1px solid #cbd5e1; padding:6px; text-align:right;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+            </table>
+        `;
+
         const opt = {
-            margin:       0.5,
-            filename:     `${filename}_${Date.now()}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            margin: 0.4,
+            filename: `${filenamePrefix}_${shopName.replace(/\s+/g, '_')}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
         };
-        
-        // Hide download button temporarily for clean PDF
-        const btn = element.querySelector('.btn-action');
-        if(btn) btn.style.display = 'none';
-        
-        html2pdf().set(opt).from(element).save().then(() => {
-            if(btn) btn.style.display = 'inline-block';
-            showToast('PDF berhasil diunduh', 'success');
+
+        html2pdf().set(opt).from(wrapper).save().then(() => {
+            showToast('Laporan PDF berhasil diunduh', 'success');
         });
     }
-
 </script>
 </body>
 </html>
